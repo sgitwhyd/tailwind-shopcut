@@ -15,6 +15,9 @@ module.exports = {
         tinyXs: "7px",
         tiny: "10px",
       },
+      padding: {
+        "2px": "2px",
+      },
     },
   },
   plugins: [],
