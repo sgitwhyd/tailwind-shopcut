@@ -13,7 +13,7 @@ import Navigation from "./components/Navigation";
 export default function Home() {
   return (
     <>
-      <div className="relative w-full">
+      <div className="relative">
         <div className=" relative -z-10 flex h-52 w-full flex-col justify-center bg-primary-color">
           <div className="z-10 p-5">
             <div className="text-lg font-light text-white">Hi, Queen</div>
