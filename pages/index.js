@@ -8,7 +8,7 @@ import SearchInput from "./components/SearchInput";
 import { BiRestaurant, BiLaptop } from "react-icons/bi";
 import { SiMarketo, SiBookstack } from "react-icons/si";
 import { CgLayoutGridSmall } from "react-icons/cg";
-import Navigation from "./components/navigation";
+import Navigation from "./components/Navigation";
 
 export default function Home() {
   return (
