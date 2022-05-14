@@ -3,10 +3,11 @@ import Hero from "../public/images/home-hero.png";
 import { FaAngleRight, FaBabyCarriage } from "react-icons/fa";
 import MapsIcon from "../public/images/maps-icon.png";
 import CategoryWrapper from "./components/categoryWrapper";
+import Places from "./components/Places";
+import SearchInput from "./components/SearchInput";
 import { BiRestaurant, BiLaptop } from "react-icons/bi";
 import { SiMarketo, SiBookstack } from "react-icons/si";
 import { CgLayoutGridSmall } from "react-icons/cg";
-import { FiSearch } from "react-icons/fi";
 
 export default function Home() {
   return (
@@ -71,24 +72,9 @@ export default function Home() {
             </div>
           </section>
           <section id="main-content" className="mt-7">
-            <div className="search">
-              <div className="relative text-gray-600 focus-within:text-gray-400">
-                <input
-                  type="search"
-                  name="q"
-                  className="relative w-full rounded-lg  bg-gray-input py-4  pl-8 text-xs text-gray-primary focus:text-gray-900 focus:outline-none"
-                  placeholder="Search Electronics Store"
-                  autoComplete="off"
-                />
-                <span className="absolute inset-y-0  right-3 flex items-center pl-2 focus:bg-gray-input">
-                  <button
-                    type="submit"
-                    className="focus:shadow-outline p-1 focus:outline-none"
-                  >
-                    <FiSearch size={25} />
-                  </button>
-                </span>
-              </div>
+            <SearchInput Placeholder="Search Electronic Store..." />
+            <div className="mt-5">
+              <Places />
             </div>
           </section>
         </div>
