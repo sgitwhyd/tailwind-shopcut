@@ -8,7 +8,7 @@ import { HiOutlineUser } from "react-icons/hi";
 const Navigation = () => {
   return (
     <>
-      <div className="sticky bottom-4 z-40 ml-[50%] w-4/6 -translate-x-1/2 rounded-full bg-red-600 py-8  drop-shadow-xl">
+      <div className="sticky bottom-4 z-40 ml-[50%] w-4/6 -translate-x-1/2 rounded-full bg-red-600 py-6  drop-shadow-xl">
         <div className="flex justify-between px-8">
           <GrHomeRounded size={25} />
           <FiShoppingBag size={25} />
