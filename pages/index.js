@@ -80,8 +80,10 @@ export default function Home() {
             </section>
             <section id="main-content" className="mt-7">
               <SearchInput Placeholder="Search Electronic Store..." />
-              <div className="mt-5">
-                <Places />
+              <div className="mt-5 flex justify-center">
+                <div>
+                  <Places />
+                </div>
               </div>
             </section>
           </div>
