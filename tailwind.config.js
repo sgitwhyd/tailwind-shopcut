@@ -21,6 +21,12 @@ module.exports = {
       margin: {
         "50%": "50%",
       },
+      borderRadius: {
+        primary: "20px",
+      },
+      boxShadow: {
+        primary: "0px 4px 20px rgba(151, 150, 150, 0.1)",
+      },
     },
   },
   plugins: [],

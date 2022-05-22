@@ -1,0 +1,70 @@
+{
+  "places": [
+    {
+      "id": 1,
+      "name": " Mbak Yayuk - Grand Mall",
+      "rating": 4.8,
+      "category": "Laptop, Electronic Products",
+      "range": 0.2,
+      "closes": "8 PM",
+      "promo": true,
+      "closed": false,
+      "slug": "mbak-yayuk-grand-mall"
+    },
+    {
+      "id": 2,
+      "name": "Gramedia - Solo Square",
+      "rating": 4.8,
+      "category": "Gym, Electronics",
+      "range": 1.0,
+      "closes": "8 PM",
+      "promo": false,
+      "closed": false,
+      "slug": "gramedia-solo-square"
+    },
+    {
+      "id": 3,
+      "name": "iBox - The Park",
+      "rating": 4.8,
+      "category": "iPhone, iMac, Macbook",
+      "range": 1.8,
+      "closes": "15m",
+      "promo": true,
+      "closed": false,
+      "slug": "ibox-the-park"
+    },
+    {
+      "id": 4,
+      "name": "Candi Elektronik - Grand Mall",
+      "rating": 4.8,
+      "category": "Smart TV, Air Conditioner",
+      "range": 0.2,
+      "closes": "8 PM",
+      "promo": false,
+      "closed": true,
+      "slug": "candi-elektronik-grand-mall"
+    },
+    {
+      "id": 5,
+      "name": "Mi Store - Solo Paragon",
+      "rating": 4.8,
+      "category": "Mi Products",
+      "range": 1.0,
+      "closes": "8 PM",
+      "promo": false,
+      "closed": false,
+      "slug": "mi-store-solo-paragon"
+    },
+    {
+      "id": 6,
+      "name": " Mbak Yayuk - Grand Mall",
+      "rating": 4.8,
+      "category": "Laptop, Electronic Products",
+      "range": 1.0,
+      "closes": "8 PM",
+      "promo": false,
+      "closed": true,
+      "slug": "mbak-yayuk-grand-mall"
+    }
+  ]
+}
