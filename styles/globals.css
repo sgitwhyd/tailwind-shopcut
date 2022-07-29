@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-wrapper .swiper-slide {
+  width: max-content !important;
+}

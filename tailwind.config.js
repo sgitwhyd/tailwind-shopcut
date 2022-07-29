@@ -23,9 +23,11 @@ module.exports = {
       },
       borderRadius: {
         primary: "20px",
+        secondary: "10px",
       },
       boxShadow: {
         primary: "0px 4px 20px rgba(151, 150, 150, 0.1)",
+        secondary: "0px 4px 30px rgba(172, 180, 188, 0.15)",
       },
     },
   },
