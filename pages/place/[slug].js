@@ -5,6 +5,10 @@ import Hero from "../../public/images/item-list-hero.png";
 import iconDiscountOrange from "../../public/images/iconDiscountOrange.svg";
 import { AiOutlineLeft, AiOutlineShareAlt } from "react-icons/ai";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
+import laptopImage from "../../public/images/laptop.png";
+import psImage from "../../public/images/ps.png";
+import vapeImage from "../../public/images/vape.png";
+import hpImage from "../../public/images/hp.png";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -47,9 +51,40 @@ const PlaceDetail = () => {
     },
   ];
 
+  const itemList = [
+    {
+      id: 1,
+      name: "Macbook Terbaru Murah",
+      photo: laptopImage,
+      price: "$ 89,99",
+      isAvailable: true,
+    },
+    {
+      id: 2,
+      name: "Playsatation 5 KW Super",
+      photo: psImage,
+      price: "$ 99",
+      isAvailable: true,
+    },
+    {
+      id: 3,
+      name: "Vaporizer Terbaik 2021",
+      photo: vapeImage,
+      price: "$ 5,99",
+      isAvailable: true,
+    },
+    {
+      id: 4,
+      name: "Smartphone Singosarenan",
+      photo: hpImage,
+      price: "$ 89,99",
+      isAvailable: false,
+    },
+  ];
+
   return (
-    <div className="flex h-screen justify-center ">
-      <div className="flex w-full flex-col bg-gray-primary md:w-96 ">
+    <div className="flex justify-center ">
+      <div className=" flex w-full flex-col bg-item-list md:w-96 ">
         <div className="relative flex ">
           <div className="absolute top-7 flex w-full justify-between px-8">
             <div className="z-10 flex h-10 w-10 items-center justify-center rounded-md border border-white bg-white opacity-75 shadow-primary backdrop-blur-sm">
@@ -93,7 +128,7 @@ const PlaceDetail = () => {
             spaceBetween={10}
             slidesPerView={3}
             grabCursor={true}
-            style={{ paddingLeft: "32px" }}
+            style={{ paddingLeft: "36px" }}
           >
             {ratings.map((item) => {
               return (
@@ -111,6 +146,65 @@ const PlaceDetail = () => {
               );
             })}
           </Swiper>
+        </div>
+        <div className="mt-5 flex items-center justify-center">
+          <div className="w-80 border border-dashed"></div>
+        </div>
+        <div className="mt-5 mb-4 pl-8 text-base font-bold">Top Popular</div>
+        <div className="flex items-center justify-center">
+          <div className="grid grid-cols-2 flex-wrap  gap-8">
+            {itemList.map((item) => {
+              return (
+                <div className="relative h-56" key={item.id}>
+                  <Image
+                    className="h-36 w-36 rounded-lg"
+                    src={item.photo}
+                    alt={item.name}
+                  />
+                  <div className="mt-3 mb-6 text-xs font-normal">
+                    {item.name}
+                  </div>
+
+                  <div className="absolute bottom-0 flex w-full items-center justify-between">
+                    {item.isAvailable ? (
+                      <div className="text-sm font-bold text-price">
+                        {item.price}
+                      </div>
+                    ) : (
+                      <div className="text-sm font-bold text-out-of-stock">
+                        Out of stock
+                      </div>
+                    )}
+                    <a
+                      href="#"
+                      className={`rounded-md border ${
+                        item.isAvailable
+                          ? "border-primary-color text-primary-color"
+                          : "pointer-events-none border-inactive-text text-inactive-text"
+                      } py-2 px-3 text-tiny font-normal `}
+                    >
+                      Add
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="my-5 flex items-center justify-center">
+          <div className="w-80 border border-dashed"></div>
+        </div>
+        <div className="mb-4 pl-8 text-base font-bold">Smart Phone</div>
+        <div className="flex items-center justify-center">
+          <div className="grid w-full grid-rows-1">
+            <div className="flex items-center justify-between">
+              <div className="">
+                <Image src={laptopImage} alt="" />{" "}
+              </div>
+              <div className="">1</div>
+              <div className="">1</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

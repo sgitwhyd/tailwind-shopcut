@@ -10,6 +10,10 @@ module.exports = {
         "gray-primary": "#BDBDBD",
         "gray-input": "#F6F6F6",
         orange: "#FF2929",
+        "item-list": "#FAFAFA",
+        price: "#83A95C",
+        "out-of-stock": "#FF2929",
+        "inactive-text": "#979797",
       },
       fontSize: {
         tinyXs: "7px",
