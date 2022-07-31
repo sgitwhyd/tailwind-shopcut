@@ -23,6 +23,7 @@ module.exports = {
         "2px": "2px",
       },
       margin: {
+        "15%": "15%",
         "50%": "50%",
       },
       borderRadius: {
