@@ -26,6 +26,7 @@ module.exports = {
         "50%": "50%",
       },
       borderRadius: {
+        tiny: "4px",
         primary: "20px",
         secondary: "10px",
       },
