@@ -211,17 +211,16 @@ const PlaceDetail = () => {
                         Out of stock
                       </div>
                     )}
-                    <a
-                      href="#"
-                      className={`pointer-events-none flex h-6 w-11 items-center justify-center rounded-tiny border text-tiny font-normal  ${
+                    <div
+                      className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border text-tiny font-normal  ${
                         item.isAvailable
                           ? "border-primary-color text-primary-color "
-                          : "border-inactive-text text-inactive-text"
+                          : "cursor-not-allowed border-inactive-text text-inactive-text"
                       }
                       `}
                     >
                       Add
-                    </a>
+                    </div>
                   </div>
                 </div>
               );
@@ -254,12 +253,12 @@ const PlaceDetail = () => {
                   />
                 </div>
                 <div className="mx-4 flex flex-col">
-                  <div className="mb-8 w-36 text-xs font-normal">
+                  <div className="mb-[15%] w-36 text-xs font-normal">
                     {phoneItem.tilte}
                   </div>
                   <div className="">
                     {phoneItem.isAvailable ? (
-                      <div className="flex w-fit items-center">
+                      <div className="flex w-fit items-center justify-center">
                         <div className="mr-1 text-sm font-bold text-price">
                           $ {phoneItem.price}
                         </div>
@@ -296,14 +295,16 @@ const PlaceDetail = () => {
                 >
                   +
                 </a> */}
-                  <a
-                    href="#"
-                    className={`pointer-events-none flex h-6 w-11
-                      items-center justify-center rounded-tiny border
-                   border-primary-color text-tiny font-normal text-primary-color `}
+                  <div
+                    className={` flex h-6 w-11
+                      items-center justify-center rounded-tiny border ${
+                        phoneItem.isAvailable
+                          ? "cursor-pointer border-primary-color text-primary-color"
+                          : " cursor-not-allowed border-inactive-text text-inactive-text"
+                      }  text-tiny font-normal `}
                   >
                     Add
-                  </a>
+                  </div>
                 </div>
               </div>
             );
