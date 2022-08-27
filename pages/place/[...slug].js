@@ -1,133 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Button from "../components/Button";
+import { itemList, ratings, smartphone } from "../../data/Category";
 import Hero from "../../public/images/item-list-hero.png";
 import iconDiscountOrange from "../../public/images/iconDiscountOrange.svg";
 import { AiOutlineLeft, AiOutlineShareAlt } from "react-icons/ai";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
-import laptopImage from "../../public/images/laptop.png";
-import psImage from "../../public/images/ps.png";
-import vapeImage from "../../public/images/vape.png";
-import hpImage from "../../public/images/hp.png";
+import placesData from "../../data/places.json";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import Link from "next/link";
 
 const PlaceDetail = () => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [place, setPlace] = useState({});
   const router = useRouter();
-  const { slug } = router.query;
+  const params = router.query.slug;
+  const id = params[0];
 
-  console.log(router.pathname);
+  useEffect(() => {
+    setPlace(placesData.places[id - 1]);
+  }, [id]);
 
-  const isFavorite = true;
-
-  const ratings = [
-    {
-      id: 1,
-      title: "Ratings",
-      value: 4.8,
-    },
-    {
-      id: 2,
-      title: "Opening hours",
-      value: "7 AM - 8 PM",
-    },
-    {
-      id: 3,
-      title: "Distance",
-      value: "< 0.2km",
-    },
-    {
-      id: 4,
-      title: "Distance",
-      value: "< 0.2km",
-    },
-    {
-      id: 5,
-      title: "Distance",
-      value: "< 0.2km",
-    },
-  ];
-
-  const itemList = [
-    {
-      id: 1,
-      name: "Macbook Terbaru Murah",
-      photo: laptopImage,
-      price: "$ 89,99",
-      isAvailable: true,
-    },
-    {
-      id: 2,
-      name: "Playsatation 5 KW Super",
-      photo: psImage,
-      price: "$ 99",
-      isAvailable: true,
-    },
-    {
-      id: 3,
-      name: "Vaporizer Terbaik 2021",
-      photo: vapeImage,
-      price: "$ 5,99",
-      isAvailable: true,
-    },
-    {
-      id: 4,
-      name: "Smartphone Singosarenan",
-      photo: hpImage,
-      price: "$ 89,99",
-      isAvailable: false,
-    },
-  ];
-
-  const smartphone = [
-    {
-      id: 1,
-      tilte: "iPhone 12 Pro Max Unyu",
-      price: "3,50",
-      photo: laptopImage,
-      discount: {
-        isDiscount: true,
-        discountPrice: "5.00",
-      },
-      isAvailable: true,
-    },
-    {
-      id: 2,
-      tilte: "iPhone 12 Pro Max Unyu",
-      price: "3,50",
-      photo: laptopImage,
-      discount: {
-        isDiscount: false,
-        discountPrice: "5.00",
-      },
-      isAvailable: true,
-    },
-    {
-      id: 3,
-      tilte: "iPhone X 64GB - Garansi 1 Tahun",
-      price: "3,50",
-      photo: laptopImage,
-      discount: {
-        isDiscount: false,
-        discountPrice: "5.00",
-      },
-      isAvailable: false,
-    },
-  ];
+  const onFavoritePlaceEventHandler = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <div className="flex justify-center ">
       <div className=" flex w-full flex-col bg-item-list md:w-96 ">
         <div className="relative flex ">
           <div className="absolute top-7 flex w-full justify-between px-8">
-            <div className="z-10 flex h-10 w-10 items-center justify-center rounded-md border border-white bg-white opacity-75 shadow-primary backdrop-blur-sm">
-              <AiOutlineLeft size={18} />
-            </div>
-            <div className=" flex">
-              <div className="z-10 mr-4 flex h-10 w-10 items-center justify-center rounded-md bg-white opacity-75 shadow-primary backdrop-blur-sm">
+            <Link href="/" passHref>
+              <div className="z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md border border-white bg-white opacity-75 shadow-primary backdrop-blur-sm">
+                <AiOutlineLeft size={18} />
+              </div>
+            </Link>
+            <div className="flex">
+              <div
+                className="z-10 mr-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-white opacity-75 shadow-primary backdrop-blur-sm"
+                onClick={onFavoritePlaceEventHandler}
+              >
                 {isFavorite ? (
                   <MdFavorite fill="red" size={22} />
                 ) : (
@@ -149,11 +67,13 @@ const PlaceDetail = () => {
           <div className="z-20 -mt-10 flex h-20 w-80 items-center justify-between rounded-secondary bg-white px-5 shadow-secondary">
             <div className="flex flex-col">
               <div className="flex">
-                <div className="mr-2 text-base font-bold">iBox - The Park</div>
+                <div className="mr-2 text-ellipsis whitespace-nowrap text-base font-bold">
+                  {place.name}
+                </div>
                 <Image src={iconDiscountOrange} alt="" />
               </div>
               <div className="text-xs font-normal text-gray-primary">
-                iPhone, iMac, Macbook
+                {place.category}
               </div>
             </div>
             <div className="h-10 w-10 rounded-lg bg-primary-color opacity-10"></div>
@@ -211,16 +131,7 @@ const PlaceDetail = () => {
                         Out of stock
                       </div>
                     )}
-                    <div
-                      className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border text-tiny font-normal  ${
-                        item.isAvailable
-                          ? "border-primary-color text-primary-color "
-                          : "cursor-not-allowed border-inactive-text text-inactive-text"
-                      }
-                      `}
-                    >
-                      Add
-                    </div>
+                    <Button isAvailable={item.isAvailable} />
                   </div>
                 </div>
               );
@@ -295,16 +206,7 @@ const PlaceDetail = () => {
                 >
                   +
                 </a> */}
-                  <div
-                    className={` flex h-6 w-11
-                      items-center justify-center rounded-tiny border ${
-                        phoneItem.isAvailable
-                          ? "cursor-pointer border-primary-color text-primary-color"
-                          : " cursor-not-allowed border-inactive-text text-inactive-text"
-                      }  text-tiny font-normal `}
-                  >
-                    Add
-                  </div>
+                  <Button isAvailable={phoneItem.isAvailable} />
                 </div>
               </div>
             );
