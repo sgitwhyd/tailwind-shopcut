@@ -12,8 +12,8 @@ const Places = () => {
     <div className="relative flex flex-col">
       {placesData.places.map((place) => {
         return (
-          <>
-            <Link href={`place/${place.slug}`} key={place.id} replace passHref>
+          <React.Fragment key={place.id}>
+            <Link href={`place/${place.id}/${place.slug}`}>
               <a>
                 <div
                   className={`relative mt-5 flex cursor-pointer gap-4 ${
@@ -65,7 +65,7 @@ const Places = () => {
                 </div>
               </a>
             </Link>
-          </>
+          </React.Fragment>
         );
       })}
     </div>
