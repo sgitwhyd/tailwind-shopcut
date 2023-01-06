@@ -1,20 +1,54 @@
 import Image from "next/image";
 import Hero from "../public/images/home-hero.png";
-import { FaAngleRight, FaBabyCarriage } from "react-icons/fa";
-import MapsIcon from "../public/images/maps-icon.png";
-import CategoryWrapper from "./components/categoryWrapper";
-import Places from "./components/Places";
+import { useState } from "react";
+import Modal from "./components/modal";
 import SearchInput from "./components/SearchInput";
-import { BiRestaurant, BiLaptop } from "react-icons/bi";
-import { SiMarketo, SiBookstack } from "react-icons/si";
-import { CgLayoutGridSmall } from "react-icons/cg";
 import Navigation from "./components/Navigation";
 
-export default function Home() {
+export const getStaticProps = async () => {
+  const resProduct = await fetch("https://fakestoreapi.com/products");
+  const dataProduct = await resProduct?.json();
+
+  return {
+    props: {
+      products: dataProduct,
+    },
+  };
+};
+
+export default function Home(props) {
+  const { products } = props;
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalData, setModalData] = useState();
+  const [search, setSearch] = useState("");
+
+  const wrapTitle = (title) => {
+    const text = title.split(" ");
+    if (text.length < 7) {
+      return title;
+    } else {
+      return text.slice(0, 4).join(" ") + "...";
+    }
+  };
+
+  const onSearchChangeHandler = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const modalHandler = () => {
+    setModalVisible((prev) => !prev);
+  };
+
+  const filteredProducts = products.filter((product) => {
+    return product?.title
+      .toLocaleLowerCase()
+      .includes(search.toLocaleLowerCase());
+  });
+
   return (
     <>
-      <div className="flex justify-center">
-        <div className="relative w-full md:w-96">
+      <div className="flex max-h-screen justify-center overflow-hidden">
+        <div className="relative  w-full md:w-96">
           <div className=" relative -z-10 flex h-52 w-full flex-col justify-center bg-primary-color">
             <div className="z-10 p-5">
               <div className="text-lg font-light text-white">Hi, Queen</div>
@@ -27,64 +61,48 @@ export default function Home() {
             </div>
           </div>
           <section className="home-menus">
-            <div className=" -mt-5 w-full rounded-t-3xl bg-white p-5">
-              <section className="address">
-                <div className="flex w-full content-center justify-between">
-                  <div className="flex">
-                    <Image
-                      src={MapsIcon}
-                      width={50}
-                      height={50}
-                      alt="maps-icon"
-                    />
-                    <div className="ml-4 pt-2">
-                      <div className="text-xs font-bold">
-                        Adi Sucipto No 347, Manahan
+            <div className=" -mt-5 h-[600px] w-full overflow-y-scroll rounded-t-3xl bg-white px-5 pt-5 pb-[370px]">
+              <section id="main-content">
+                <SearchInput
+                  Placeholder="Search Electronic Store..."
+                  onChangeHandler={onSearchChangeHandler}
+                />
+                <div className="mt-5 grid grid-cols-2 flex-wrap  gap-8 ">
+                  {filteredProducts.length > 0 ? (
+                    filteredProducts.map((product) => (
+                      <div className="relative h-56" key={product?.id}>
+                        <Image
+                          className="h-36 w-36 rounded-lg"
+                          src={product?.image}
+                          alt={product?.title}
+                          width={"144px"}
+                          height={"144px"}
+                        />
+                        <div className="mt-3 mb-6 text-xs font-normal">
+                          {wrapTitle(product?.title)}
+                        </div>
+
+                        <div className="absolute bottom-0 flex w-full items-center justify-between">
+                          <div className="text-sm font-bold text-price">
+                            $ {product?.price}
+                          </div>
+                          <div
+                            className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border border-primary-color text-tiny font-normal text-primary-color`}
+                            onClick={() => {
+                              setModalVisible((prev) => !prev);
+                              setModalData(product);
+                            }}
+                          >
+                            Add
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-tiny font-normal text-gray-primary">
-                        Change location
-                      </div>
+                    ))
+                  ) : (
+                    <div className="mt-5 w-full text-center">
+                      product not found
                     </div>
-                  </div>
-                  <div className="pt-2">
-                    <FaAngleRight />
-                  </div>
-                </div>
-              </section>
-              <section className="category pt-5">
-                <div className="text-lg font-normal">
-                  Our <span className="font-bold">Categories</span>
-                </div>
-                <div className="text-xs font-normal text-gray-primary">
-                  <span>7</span> categories available
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <CategoryWrapper categoryName="Restaurant">
-                    <BiRestaurant size={25} />
-                  </CategoryWrapper>
-                  <CategoryWrapper categoryName="Supermarket">
-                    <SiMarketo size={25} />
-                  </CategoryWrapper>
-                  <CategoryWrapper categoryName="Baby & Kids">
-                    <FaBabyCarriage size={25} />
-                  </CategoryWrapper>
-                  <CategoryWrapper categoryName="Electronics">
-                    <BiLaptop size={25} />
-                  </CategoryWrapper>
-                  <CategoryWrapper categoryName="Books">
-                    <SiBookstack size={25} />
-                  </CategoryWrapper>
-                  <CategoryWrapper categoryName="Other">
-                    <CgLayoutGridSmall size={25} />
-                  </CategoryWrapper>
-                </div>
-              </section>
-              <section id="main-content" className="mt-7">
-                <SearchInput Placeholder="Search Electronic Store..." />
-                <div className="mt-5 flex justify-center">
-                  <div>
-                    <Places />
-                  </div>
+                  )}
                 </div>
               </section>
             </div>
@@ -92,6 +110,9 @@ export default function Home() {
           <Navigation />
         </div>
       </div>
+      {modalVisible && (
+        <Modal open={modalVisible} product={modalData} handler={modalHandler} />
+      )}
     </>
   );
 }
