@@ -40,21 +40,25 @@ const Cart = () => {
           {cart.length === 0 ? "Your cart is empty" : `${cart.length} items`}{" "}
         </div>
         {cart?.map((item) => (
-          <div key={item.id} className="mt-4 flex justify-between">
-            <Image
-              src={item.image}
-              alt={item.title}
-              width={"78px"}
-              height={"78px"}
-              className="rounded-md"
-            />
-            <div className="flex w-[200px] flex-col justify-around">
+          <div key={item.id} className="mt-4 flex h-36 justify-between gap-3">
+            <div className="relative m-auto h-[78px] w-[78px]">
+              <Image
+                src={item.image}
+                alt={item.title}
+                layout="fill"
+                className=" rounded-md"
+              />
+            </div>
+            <div className="flex w-[200px] flex-col justify-evenly">
               <div className="text-xs font-normal">{item.title}</div>
               <div className="text-sm font-bold text-price">${item.price}</div>
             </div>
-            <div className="flex flex-col justify-around">
+            <div className="flex flex-col justify-evenly">
               <div
-                className="cursor-pointer text-xs text-red-500 "
+                className=" cursor-pointer text-xs text-red-500 "
+                style={{
+                  textAlign: "end",
+                }}
                 onClick={() => {
                   dispatch({
                     type: "REMOVE_FROM_CART",
@@ -64,7 +68,7 @@ const Cart = () => {
               >
                 remove
               </div>
-              <div className="flex items-end">
+              <div className="flex items-center">
                 <div
                   className="flex h-5 w-5 cursor-pointer items-center justify-center rounded-[4px] border border-[#944E6C] text-[#944E6C]"
                   onClick={() => {
@@ -121,15 +125,18 @@ const Cart = () => {
             <div className="mb-4 text-lg font-bold text-black">
               Select payment method
             </div>
-            <div className="mb-16 flex w-full justify-between rounded-[10px] border border-[#944E6C] p-4">
+            <div
+              className="mb-16 flex w-full cursor-pointer justify-between gap-[10px] rounded-[10px] border border-[#944E6C] p-4"
+              htmlFor="cash-payment"
+            >
               <Image src={IconMoney} alt="money" width={34} height={34} />
-              <div className="flex w-[250px] flex-col justify-around">
+              <div className="flex w-full flex-col justify-around">
                 <div className="text-sm font-medium">Pay with Cash</div>
                 <div className="text-tiny font-normal text-gray-primary">
                   Get 5% Discount
                 </div>
               </div>
-              <input type="radio" name="" id="" />
+              <input id="cash-payment" type="radio" name="cash" checked />
             </div>
             {/* button continue */}
             <button className="mt-3 w-full rounded-[14px] bg-[#944E6C] py-5 text-center text-sm font-bold text-white ">
