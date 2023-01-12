@@ -70,16 +70,24 @@ export default function Home(props) {
                 <div className="mt-5 grid grid-cols-2 flex-wrap  gap-8 ">
                   {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
-                      <div className="relative h-56" key={product?.id}>
-                        <Image
-                          className="h-36 w-36 rounded-lg"
-                          src={product?.image}
-                          alt={product?.title}
-                          width={"144px"}
-                          height={"144px"}
-                        />
-                        <div className="mt-3 mb-6 text-xs font-normal">
-                          {wrapTitle(product?.title)}
+                      <div className="relative h-56 " key={product?.id}>
+                        <div
+                          className="cursor-pointer"
+                          onClick={() => {
+                            setModalVisible((prev) => !prev);
+                            setModalData(product);
+                          }}
+                        >
+                          <Image
+                            className="h-36 w-36 rounded-lg duration-300 ease-in-out hover:scale-90"
+                            src={product?.image}
+                            alt={product?.title}
+                            width={142}
+                            height={142}
+                          />
+                          <div className="mt-3 mb-6 text-xs font-normal">
+                            {wrapTitle(product?.title)}
+                          </div>
                         </div>
 
                         <div className="absolute bottom-0 flex w-full items-center justify-between">
@@ -87,7 +95,7 @@ export default function Home(props) {
                             $ {product?.price}
                           </div>
                           <div
-                            className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border border-primary-color text-tiny font-normal text-primary-color`}
+                            className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border border-primary-color text-tiny font-normal text-primary-color hover:bg-primary-color hover:text-white`}
                             onClick={() => {
                               setModalVisible((prev) => !prev);
                               setModalData(product);

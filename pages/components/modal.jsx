@@ -27,7 +27,6 @@ const Modal = (props) => {
   };
 
   const addToCart = (id, product) => {
-    console.log(product);
     if (!checkItemInCart(id)) {
       dispatch({
         type: "ADD_TO_CART",

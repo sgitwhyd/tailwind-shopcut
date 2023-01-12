@@ -32,7 +32,6 @@ const Navigation = () => {
           </Link>
           <Link href={"/profile"} passHref>
             <div className="relative cursor-pointer">
-              {/* <div className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-red-600 outline outline-2 outline-white"></div> */}
               <HiOutlineUser size={25} />
             </div>
           </Link>
