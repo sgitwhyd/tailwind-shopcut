@@ -16,15 +16,8 @@ export default function Success() {
   return (
     <div className="flex h-screen flex-col items-center justify-between bg-item-list py-7">
       <div className=" flex w-full flex-col px-8 md:w-96">
-        <div className="flex w-full items-center ">
-          <Link href={"/cart"} passHref>
-            <div className="z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md">
-              <AiOutlineLeft size={18} />
-            </div>
-          </Link>
-          <div className="w-[280px] text-center text-base font-bold">
-            Payment
-          </div>
+        <div className="flex w-full items-center justify-center ">
+          <div className="text-center text-base font-bold">Payment</div>
         </div>
       </div>
       {isLoading ? (
