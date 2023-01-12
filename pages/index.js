@@ -71,15 +71,22 @@ export default function Home(props) {
                   {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
                       <div className="relative h-56" key={product?.id}>
-                        <Image
-                          className="h-36 w-36 rounded-lg"
-                          src={product?.image}
-                          alt={product?.title}
-                          width={"144px"}
-                          height={"144px"}
-                        />
-                        <div className="mt-3 mb-6 text-xs font-normal">
-                          {wrapTitle(product?.title)}
+                        <div
+                          onClick={() => {
+                            setModalVisible((prev) => !prev);
+                            setModalData(product);
+                          }}
+                        >
+                          <Image
+                            className="h-36 w-36 rounded-lg"
+                            src={product?.image}
+                            alt={product?.title}
+                            width={"144px"}
+                            height={"144px"}
+                          />
+                          <div className="mt-3 mb-6 text-xs font-normal">
+                            {wrapTitle(product?.title)}
+                          </div>
                         </div>
 
                         <div className="absolute bottom-0 flex w-full items-center justify-between">
@@ -88,10 +95,6 @@ export default function Home(props) {
                           </div>
                           <div
                             className={` flex h-6 w-11 cursor-pointer items-center justify-center rounded-tiny border border-primary-color text-tiny font-normal text-primary-color`}
-                            onClick={() => {
-                              setModalVisible((prev) => !prev);
-                              setModalData(product);
-                            }}
                           >
                             Add
                           </div>

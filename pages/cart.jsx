@@ -136,12 +136,19 @@ const Cart = () => {
                   Get 5% Discount
                 </div>
               </div>
-              <input id="cash-payment" type="radio" name="cash" checked />
+              <input
+                id="cash-payment"
+                type="radio"
+                name="cash"
+                defaultChecked
+              />
             </div>
             {/* button continue */}
-            <button className="mt-3 w-full rounded-[14px] bg-[#944E6C] py-5 text-center text-sm font-bold text-white ">
-              Continue Payment
-            </button>
+            <Link href={"/success"} passHref>
+              <button className="mt-3 w-full rounded-[14px] bg-[#944E6C] py-5 text-center text-sm font-bold text-white ">
+                Continue Payment
+              </button>
+            </Link>
           </>
         )}
       </div>
