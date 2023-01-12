@@ -10,7 +10,7 @@ import iksan from "../public/images/profile-iksan.jpeg";
 export default function Profile() {
   const datas = [
     { name: "Aldilla Ulinnaja", nim: "L200200090", image: ulin },
-    { name: "Sigit Wahyudi", nim: "L00200145", image: sigit },
+    { name: "Sigit Wahyudi", nim: "L200200145", image: sigit },
     { name: "M. Ikhsan Fahrudin", nim: "L200200151", image: iksan },
   ];
   return (
