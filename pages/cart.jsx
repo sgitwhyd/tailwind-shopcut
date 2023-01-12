@@ -4,6 +4,7 @@ import { AiOutlineLeft } from "react-icons/ai";
 import Image from "next/image";
 import IconMoney from "../public/images/iconMoney.svg";
 import { useCart } from "./components/cart.context";
+import Navigation from "./components/Navigation";
 
 const Cart = () => {
   const [total, setTotal] = React.useState(0);
@@ -37,7 +38,14 @@ const Cart = () => {
         </div>
 
         <div className="text-xs font-bold text-black">
-          {cart.length === 0 ? "Your cart is empty" : `${cart.length} items`}{" "}
+          {cart.length === 0 ? (
+            <div className="flex h-[81.4vh] flex-col justify-between">
+              <p className="pt-10 text-center text-base">Your cart is empty!</p>
+              <Navigation />
+            </div>
+          ) : (
+            `${cart.length} items`
+          )}{" "}
         </div>
         {cart?.map((item) => (
           <div key={item.id} className="mt-4 flex h-36 justify-between gap-3">
